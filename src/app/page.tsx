@@ -1,7 +1,13 @@
+import TodoList from '@/components/TodoList'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
+
 export default function Home() {
   return (
     <main>
-      <h2>todos</h2>
+      <h1>📝 Todo App</h1>
+      <ReactQueryProvider>
+        <TodoList />
+      </ReactQueryProvider>
     </main>
   )
 }
