@@ -2,7 +2,7 @@
 
 import ToDo from '@/components/ToDo'
 import { Todo } from '@/types/todo'
-import { deleteToDo, getToDos } from '@/utils/apiRequests'
+import { deleteToDo, getToDos } from '@/utils/todosApi'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 
@@ -19,9 +19,10 @@ export default function TodoList() {
   } = useQuery<Todo[]>({
     queryKey: ['todos'],
     queryFn: getToDos,
+    select: (todos) => [...todos].sort((a, b) => b.id - a.id),
   })
 
-  const { mutate } = useMutation({
+  const { mutate: deleteTodo } = useMutation({
     mutationFn: deleteToDo,
     onMutate: (id) => {
       setErrorId(null)
@@ -49,7 +50,7 @@ export default function TodoList() {
         <ToDo
           key={todo.id}
           todo={todo}
-          onDelete={(id) => mutate(id)}
+          onDelete={() => deleteTodo(todo.id)}
           isDeleting={deletingId === todo.id}
           isError={errorId === todo.id}
         />
