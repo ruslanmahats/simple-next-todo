@@ -40,19 +40,18 @@ export default function AddTodoForm() {
   }
 
   return (
-    <div className="container">
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-        className="flex justify-between gap-1.5 px-3 py-5 border-1 border-gray-400 mt-8 mb-8"
-      >
-        {error && <p>{error.message}</p>}
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className=" px-3 py-5 border-1 border-gray-400 mt-8 mb-8"
+    >
+      <div className="flex justify-between gap-1.5">
         <input
           type="text"
           onChange={(e) => handleChange(e)}
           name="new-todo"
           value={formData.title}
           placeholder="add new todo"
-          className={`w-full p-2 border-1 border-gray-400 ${empty && 'border-rose-400'}`}
+          className={`w-full p-2 border-1 border-gray-400 ${empty && 'border-red-500'}`}
         />
         <button
           type="submit"
@@ -60,7 +59,10 @@ export default function AddTodoForm() {
         >
           {isPending ? '⏳' : '➕'}
         </button>
-      </form>
-    </div>
+      </div>
+      {error && (
+        <p className="text-xs text-red-500 mt-1">{`Something went wrong: ${error.message}`}</p>
+      )}
+    </form>
   )
 }
