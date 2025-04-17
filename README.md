@@ -22,17 +22,23 @@ It allows users to **fetch**, **create**, and **delete** todo items using a publ
 
 1.  Clone the repository
 
+```
 git clone https://github.com/ruslanmahats/simple-next-todo.git
 cd simple-next-todo
+```
 
 2.  Install dependencies
 
+```
 npm install
+```
 
 3.  Start the development server
 
+```
 npm run dev
+```
 
 4.  Open in browser
 
-http://localhost:3000
+    - [http://localhost:3000](http://localhost:3000)
